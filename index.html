@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A student project demonstrating software configuration management.">
+  <title>SCM | Automated Website Delivery</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">SCM<span>Lab</span></a>
+      <a class="nav-link" href="#pipeline">Pipeline</a>
+    </nav>
+  </header>
+  <main id="home">
+    <section class="hero container">
+      <p class="eyebrow">SOFTWARE CONFIGURATION MANAGEMENT</p>
+      <h1>From a Git push<br>to a live website.</h1>
+      <p class="intro">A small static site that demonstrates version control, automated linting, and continuous deployment with GitHub Actions and GitHub Pages.</p>
+      <a class="button" href="#pipeline">Explore the workflow <span aria-hidden="true">↓</span></a>
+      <div class="status-card" aria-live="polite">
+        <span class="status-dot"></span>
+        <div><strong id="status-title">Quality check demo</strong><p id="status-message">JavaScript is loaded. Use the button to test the page interaction.</p></div>
+      </div>
+      <button class="secondary-button" id="check-button" type="button">Run page check</button>
+    </section>
+    <section class="pipeline-section" id="pipeline">
+      <div class="container">
+        <p class="eyebrow">THE DELIVERY PIPELINE</p>
+        <h2>Every change has a path.</h2>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><h3>Commit</h3><p>Git records changes so the project history can be reviewed and restored.</p></article>
+          <article class="step"><span class="step-number">02</span><h3>Lint</h3><p>ESLint checks JavaScript style rules. A failed check stops the deployment job.</p></article>
+          <article class="step"><span class="step-number">03</span><h3>Publish</h3><p>GitHub Actions packages the site and deploys it to GitHub Pages after checks pass.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="container footer"><p>SCM Lab · Static site built with HTML, CSS, JavaScript, GitHub Actions, and GitHub Pages.</p></footer>
+</body>
+</html>

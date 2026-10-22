@@ -1,0 +1,12 @@
+{
+  "name": "scm-github-pages-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site demonstrating ESLint and GitHub Pages deployment.",
+  "scripts": {
+    "lint": "eslint script.js"
+  },
+  "devDependencies": {
+    "eslint": "8.57.1"
+  }
+}
