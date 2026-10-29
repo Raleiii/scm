@@ -1,4 +1,4 @@
-name: Lint and Deploy to GitHub Pages
+name: Lint, Test, and Deploy to GitHub Pages
 
 on:
   push:
@@ -9,25 +9,35 @@ permissions:
   contents: read
 
 jobs:
-  quality-check:
-    name: JavaScript lint
+  lint:
+    name: Lint JavaScript
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install dependencies
-        run: npm install
-      - name: Run ESLint
-        run: npm run lint
+          cache: npm
+      - run: npm install
+      - run: npm run lint
+
+  test:
+    name: Run Jest tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install
+      - run: npm test
 
   deploy:
-    name: Build and deploy site
-    needs: quality-check
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
+    needs: [lint, test]
     permissions:
       contents: read
       pages: write
@@ -36,12 +46,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Set up GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload static site artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: "."
       - name: Deploy to GitHub Pages

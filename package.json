@@ -2,11 +2,14 @@
   "name": "scm-github-pages-demo",
   "version": "1.0.0",
   "private": true,
-  "description": "Static site demonstrating ESLint and GitHub Pages deployment.",
+  "description": "Static SCM site with ESLint, Jest, and GitHub Pages deployment",
   "scripts": {
-    "lint": "eslint script.js"
+    "lint": "eslint script.js tests",
+    "test": "jest --runInBand"
   },
   "devDependencies": {
-    "eslint": "8.57.1"
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
   }
 }

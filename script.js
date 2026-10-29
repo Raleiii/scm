@@ -1,8 +1,21 @@
-const checkButton = document.querySelector("#check-button");
-const statusTitle = document.querySelector("#status-title");
-const statusMessage = document.querySelector("#status-message");
+function initializePage() {
+  const statusElement = document.getElementById("page-status");
 
-checkButton.addEventListener("click", () => {
-  statusTitle.textContent = "Page check passed";
-  statusMessage.textContent = "The JavaScript interaction ran successfully. ESLint checks source-code rules during the GitHub Actions workflow.";
-});
+  if (!statusElement) {
+    return;
+  }
+
+  statusElement.textContent = "Page loaded successfully. Lint and tests are ready.";
+}
+
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializePage);
+  } else {
+    initializePage();
+  }
+}
+
+if (typeof module !== "undefined") {
+  module.exports = { initializePage };
+}
