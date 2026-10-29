@@ -13,7 +13,7 @@ describe("initializePage", () => {
     initializePage();
 
     expect(document.getElementById("page-status").textContent).toBe(
-      "Page loaded successfully. Lint and tests are ready."
+      "This should fail"
     );
   });
   
